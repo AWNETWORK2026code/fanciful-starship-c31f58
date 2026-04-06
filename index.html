@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AW Network | Music Sub-Network 2026</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+:root {
+--primary-gradient: linear-gradient(45deg, #ff0055, #7000ff);
+--bg-dark: #0a0a0a;
+--card-bg: rgba(255, 255, 255, 0.05);
+}
+
+body {
+font-family: 'Segoe UI', Roboto, sans-serif;
+margin: 0; padding: 0;
+background-color: var(--bg-dark);
+color: #ffffff;
+overflow-x: hidden;
+}
+
+.background-overlay {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0a0a0a 100%);
+z-index: -1;
+}
+
+/* --- Header & Menu --- */
+header {
+position: fixed; top: 0; left: 0; width: 100%; padding: 20px;
+z-index: 100; display: flex; align-items: center;
+}
+
+.menu-icon {
+font-size: 24px; cursor: pointer; color: white;
+z-index: 101; background: rgba(0,0,0,0.6);
+padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar {
+position: fixed; top: 0; left: -320px; width: 300px; height: 100%;
+background: #111; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+z-index: 200; padding-top: 80px;
+box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+}
+
+.sidebar.active { left: 0; }
+
+.sidebar a {
+display: block; padding: 18px 30px; color: #bbb;
+text-decoration: none; font-size: 1rem; border-bottom: 1px solid #222;
+transition: 0.3s; font-weight: 500;
+}
+
+.sidebar a:hover { background: var(--primary-gradient); color: white; padding-left: 40px; }
+
+/* Mục Đăng nhập nổi bật */
+.sidebar a.login-item {
+color: #ff0055; font-weight: bold; border-top: 2px solid #222; margin-top: 10px;
+}
+
+.overlay-screen {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.8); display: none; z-index: 150;
+backdrop-filter: blur(4px);
+}
+
+/* --- Nội dung chính --- */
+.container-content {
+padding: 120px 20px; max-width: 900px; margin: 0 auto;
+}
+
+.main-page { text-align: center; display: block; }
+.sub-page { display: none; text-align: left; line-height: 1.8; animation: fadeIn 0.5s ease; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.brand-name {
+background: var(--primary-gradient);
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+font-weight: 800;
+}
+
+h1 { font-size: 3.5rem; margin-bottom: 10px; letter-spacing: -1px; }
+h2 { font-size: 2.2rem; margin-bottom: 20px; border-left: 5px solid #ff0055; padding-left: 15px; }
+
+.cta-button {
+display: inline-block; padding: 16px 45px; background: var(--primary-gradient);
+color: white; text-decoration: none; font-weight: bold; border-radius: 50px;
+cursor: pointer; border: none; text-transform: uppercase; margin-top: 30px;
+box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
+}
+
+/* --- Alert Box cho Bản Quyền --- */
+.alert-box {
+background: rgba(255, 0, 85, 0.1); border: 1px solid #ff0055;
+padding: 20px; border-radius: 12px; margin-top: 30px;
+}
+
+/* --- Modal --- */
+.modal-overlay {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 1000;
+}
+.modal-box { background: #111; padding: 35px; border-radius: 20px; width: 90%; max-width: 450px; border: 1px solid #333; }
+input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; background: #1a1a1a; border: 1px solid #333; color: white; box-sizing: border-box; }
+.submit-btn { width: 100%; padding: 16px; background: var(--primary-gradient); border: none; color: white; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+
+footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.9rem; border-top: 1px solid #1a1a1a; margin-top: 50px; }
+</style>
+</head>
+<body>
+
+<div class="background-overlay"></div>
+
+<header>
+<div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+</header>
+
+<div class="sidebar" id="sidebar">
+<a href="#" onclick="showPage('home')"><i class="fas fa-home"></i> Trang Chủ</a>
+<a href="#" onclick="showPage('services')"><i class="fas fa-hand-holding-heart"></i> Chúng tôi giúp gì cho bạn?</a>
+<a href="#" onclick="showPage('copyright')"><i class="fas fa-shield-alt"></i> Bảo vệ bản quyền</a>
+<a href="#" onclick="openModal()"><i class="fas fa-envelope"></i> Liên hệ / Đăng ký</a>
+<a href="https://awmusicgroup.click" class="login-item"><i class="fas fa-user-lock"></i> ĐĂNG NHẬP CMS</a>
+</div>
+<div class="overlay-screen" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="container-content">
+<div id="home" class="main-page">
+<h1><span class="brand-name">AW NETWORK</span></h1>
+<p style="font-size: 1.2rem; color: #ccc;">Hệ sinh thái âm nhạc dành cho nghệ sĩ độc lập toàn cầu.</p>
+<p><strong>AW Network</strong> là Sub-Network thuộc <strong>The State 51 Conspiracy</strong>.</p>
+<button class="cta-button" onclick="openModal()">Bắt đầu sự nghiệp ngay</button>
+
+<div style="margin-top: 60px; font-size: 2rem; color: #444; display: flex; justify-content: center; gap: 30px;">
+<i class="fab fa-youtube"></i> <i class="fab fa-spotify"></i> <i class="fab fa-apple"></i> <i class="fab fa-tiktok"></i>
+</div>
+</div>
+
+<div id="services" class="sub-page">
+<h2 class="brand-name">Dành riêng cho nghệ sĩ độc lập</h2>
+<p>Tại <strong>AWNETWORK</strong> mục tiêu của chúng tôi rất đơn giản: chúng tôi ở đây để giúp các nghệ sĩ độc lập và các hãng đĩa địa phương phát triển trong hệ sinh thái số. Chúng tôi tập trung vào việc công bằng, có kỹ năng, tôn trọng và minh bạch trong mọi việc chúng tôi làm.</p>
+<p>Sứ mệnh của chúng tôi là hỗ trợ mọi nghệ sỹ và hãng đĩa, tôn trọng sứ mệnh của họ và cung cấp cho họ công cụ và kiến thức cần thiết để họ có thể đưa ra những quyết định thông minh. Chúng tôi hoàn toàn tập trung vào việc đưa ra những ý tưởng mới để giúp họ nổi bật, thúc đẩy sự nghiệp của họ phát triển và tăng thu nhập.</p>
+<p>Chúng tôi cung cấp đa dạng dịch vụ, tận dụng những đổi mới công nghệ mới nhất. Công việc của chúng tôi được củng cố bởi mối quan hệ chặt chẽ với các đối tác chính của chúng tôi: các nghệ sĩ, hãng đĩa, nhà sản xuất, các nền tảng nghe nhạc, xem video trực tuyến.</p>
+<center><button class="cta-button" onclick="openModal()">Liên hệ hợp tác</button></center>
+</div>
+
+<div id="copyright" class="sub-page">
+<h2 class="brand-name">Bảo vệ tài sản kỹ thuật số của bạn</h2>
+<p>Chúng tôi hợp tác với <strong>YouTube, Meta và TikTok</strong>. Chúng tôi sử dụng công nghệ của họ – tương ứng là Content ID, Rights Manager và MediaMatch. Bằng cách tận dụng các hệ thống quản lý nội dung này, chúng tôi có thể nhận dạng nội dung của bạn và đem về cho bạn khoản thu trên những nền tảng đó.</p>
+
+<div class="alert-box">
+<h4 style="margin-top: 0; color: #ff0055;"><i class="fas fa-exclamation-triangle"></i> Bạn đang gặp rắc rối về bản quyền?</h4>
+<p style="margin-bottom: 0;">Nếu nội dung của bạn đang bị đánh bản quyền trái phép, bị mạo danh hoặc bạn cần hỗ trợ gỡ các khiếu nại bản quyền trên YouTube/Facebook/TikTok, <strong>hãy liên hệ ngay với tôi</strong> để được xử lý nhanh nhất.</p>
+</div>
+
+<p style="margin-top: 20px;">Thành quả sáng tạo của bạn là tài sản quý giá và chúng tôi cam kết dành sự trân trọng xứng đáng cho tác phẩm bạn tạo ra. Chúng tôi quản lý xác nhận bản quyền đối với video trên YouTube, âm nhạc trên Instagram Stories và âm thanh xu hướng trên TikTok.</p>
+<center><button class="cta-button" onclick="openModal()">Gỡ bản quyền / Đăng ký bảo vệ</button></center>
+</div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+<div class="modal-box">
+<span style="float:right; cursor:pointer; color: #666;" onclick="closeModal()">&times; Đóng</span>
+<h3 style="margin-bottom: 25px;">Gửi yêu cầu tới <span class="brand-name">AW Network</span></h3>
+<form action="https://formspree.io/f/mdapppla" method="POST">
+<input type="text" name="Artist_Name" placeholder="Tên nghệ sĩ / Label" required>
+<input type="email" name="Email" placeholder="Email nhận phản hồi" required>
+<input type="url" name="Link" placeholder="Link kênh hoặc nội dung cần hỗ trợ" required>
+<select name="Service_Type">
+<option value="Join Network">Đăng ký gia nhập Network</option>
+<option value="Copyright Support">Hỗ trợ gỡ bản quyền / Khiếu nại</option>
+<option value="Distribution">Phân phối nhạc toàn cầu</option>
+</select>
+<button type="submit" class="submit-btn">GỬI YÊU CẦU NGAY</button>
+</form>
+</div>
+</div>
+
+<footer>
+&copy; 2026 Bản quyền thuộc về <span class="brand-name">AW Network</span>. <br>
+Hệ thống phân phối âm nhạc chiến lược của <strong>The State 51 Conspiracy</strong>.
+</footer>
+
+<script>
+function toggleMenu() {
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+sidebar.classList.toggle('active');
+overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+}
+
+function showPage(pageId) {
+document.getElementById('home').style.display = 'none';
+document.getElementById('services').style.display = 'none';
+document.getElementById('copyright').style.display = 'none';
+
+document.getElementById(pageId).style.display = 'block';
+
+window.scrollTo({ top: 0, behavior: 'smooth' });
+toggleMenu();
+}
+
+function openModal() {
+document.getElementById('registerModal').style.display = 'flex';
+}
+
+function closeModal() {
+document.getElementById('registerModal').style.display = 'none';
+}
+
+window.onclick = function(e) {
+if(e.target == document.getElementById('registerModal')) closeModal();
+}
+</script>
+</body>
+</html>
+
