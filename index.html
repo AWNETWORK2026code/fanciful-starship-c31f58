@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AW Network | Official System 2026</title>
+
 <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -25,7 +27,6 @@ body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg-dark); 
 .btn-grad { padding: 14px 40px; border: none; border-radius: 50px; background: var(--primary); color: white; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
 .btn-grad:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 0, 85, 0.3); }
 
-/* --- 1. TRANG CHỦ CÔNG KHAI (PUBLIC) --- */
 header { position: fixed; top: 0; width: 100%; padding: 20px; z-index: 1000; }
 .menu-icon { font-size: 24px; cursor: pointer; background: rgba(0,0,0,0.6); padding: 12px; border-radius: 12px; border: 1px solid var(--border); backdrop-filter: blur(10px); color: white; }
 
@@ -44,11 +45,9 @@ header { position: fixed; top: 0; width: 100%; padding: 20px; z-index: 1000; }
 
 .eco-icons { font-size: 2.5rem; color: #1a1a1a; display: flex; justify-content: center; gap: 30px; margin-top: 40px; }
 
-/* --- 2. MÀN HÌNH ĐĂNG NHẬP --- */
 .login-screen { height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, #1a1a2e, #000); }
 .login-box { background: var(--card-bg); padding: 50px 40px; border-radius: 30px; width: 340px; border: 1px solid var(--border); text-align: center; }
 
-/* --- 3. DASHBOARD CMS (ADMIN & ARTIST) --- */
 .cms-layout { display: flex; min-height: 100vh; background: #000; }
 .cms-side { width: 260px; background: #000; border-right: 1px solid var(--border); padding: 40px 20px; position: fixed; height: 100%; }
 .cms-main { margin-left: 260px; padding: 50px; width: calc(100% - 260px); background: #050505; }
@@ -57,7 +56,6 @@ header { position: fixed; top: 0; width: 100%; padding: 20px; z-index: 1000; }
 
 .glass-card { background: var(--card-bg); border: 1px solid var(--border); padding: 25px; border-radius: 24px; margin-bottom: 30px; }
 
-/* Table & 3 Dots */
 table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
 th { padding: 15px; text-align: left; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
 td { padding: 20px 15px; background: #0c0c0e; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 0.9rem; }
@@ -93,8 +91,8 @@ footer { padding: 60px; text-align: center; color: #222; border-top: 1px solid #
 
 <div id="home" class="public-container">
 <h1 style="font-size: 4rem;"><span class="brand-name">AW NETWORK</span></h1>
-<p style="color: #888; font-size: 1.2rem;">Partner of <strong>The State 51 Conspiracy</strong>.</p>
-<button class="btn-grad" style="margin-top: 40px;" onclick="showSection('register')">Bắt đầu ngay</button>
+<p style="color: #888; font-size: 1.2rem;">Đối tác của <strong>The State 51 Conspiracy</strong>.</p>
+<button class="btn-grad" style="margin-top: 40px;" onclick="showSection('register')">Đăng ký ngay</button>
 <div class="partner-grid">
 <a href="https://youtube.com/@mobadtrip" target="_blank" class="p-card"><i class="fab fa-youtube" style="color:red"></i> MO BADTRIP</a>
 <a href="https://youtube.com/@awlabelsinc2025" target="_blank" class="p-card"><i class="fab fa-youtube" style="color:red"></i> AW LABELS INC</a>
@@ -108,8 +106,8 @@ footer { padding: 60px; text-align: center; color: #222; border-top: 1px solid #
 <h2 class="brand-name">Chúng tôi giúp gì cho bạn?</h2>
 <div class="text-content">
 <p><strong>Dành riêng cho nghệ sĩ độc lập</strong></p>
-<p>Tại <strong>AWNETWORK</strong> mục tiêu của chúng tôi rất đơn giản: giúp các nghệ sĩ độc lập và các hãng đĩa địa phương phát triển trong hệ sinh thái số. Sứ mệnh của chúng tôi là hỗ trợ mọi nghệ sỹ và cung cấp cho họ công cụ, kiến thức cần thiết để đưa ra những quyết định thông minh.</p>
-<p>Chúng tôi hoàn toàn tập trung vào việc đưa ra những ý tưởng mới để giúp bạn nổi bật, thúc đẩy sự nghiệp và tăng thu nhập.</p>
+<p>Tại <strong>AWNETWORK</strong>, mục tiêu của chúng tôi rất đơn giản: giúp các nghệ sĩ độc lập và các nhãn đĩa địa phương phát triển trong hệ sinh thái số. Sứ mệnh của chúng tôi là hỗ trợ mọi nghệ sĩ và cung cấp cho họ công cụ, kiến ​​thức cần thiết để đưa ra những quyết định thông minh.</p>
+<p>Chúng tôi tập trung hoàn toàn vào việc đưa ra những ý tưởng mới để giúp bạn nổi bật, phát triển sự nghiệp và tăng thu nhập.</p>
 </div>
 </div>
 
@@ -117,10 +115,10 @@ footer { padding: 60px; text-align: center; color: #222; border-top: 1px solid #
 <h2 class="brand-name">Bảo vệ bản quyền</h2>
 <div class="text-content">
 <p><strong>Bảo vệ tài sản kỹ thuật số của bạn</strong></p>
-<p>Chúng tôi hợp tác với YouTube, Meta và TikTok sử dụng công nghệ Content ID, Rights Manager và MediaMatch để nhận dạng nội dung của bạn và đem về khoản thu xứng đáng.</p>
+<p>Chúng tôi hợp tác với YouTube, Meta và TikTok sử dụng công nghệ Content ID, Rights Manager và MediaMatch để nhận dạng nội dung và mang về nguồn thu xứng đáng.</p>
 <div class="highlight-box">
 <h4 style="margin-top:0; color:var(--accent);">Bạn bị đánh bản quyền?</h4>
-<p style="margin:0;">Nếu bạn bị khiếu nại trái phép, hãy liên hệ ngay hoặc đăng nhập CMS để chúng tôi hỗ trợ gỡ khiếu nại nhanh nhất.</p>
+<p style="margin:0;">Nếu bạn bị khiếu nại trái phép, hãy liên hệ ngay hoặc đăng nhập CMS để chúng tôi hỗ trợ xử lý nhanh nhất.</p>
 </div>
 </div>
 </div>
@@ -136,15 +134,15 @@ footer { padding: 60px; text-align: center; color: #222; border-top: 1px solid #
 </form>
 </div>
 </div>
-<footer>&copy; 2026 AW NETWORK. Partner of The State 51 Conspiracy.</footer>
+<footer>&copy; 2026 AW NETWORK. Đối tác của The State 51 Conspiracy.</footer>
 </div>
 
 <div id="view-login" class="login-screen hidden">
 <div class="login-box">
-<h2 class="brand-name">AW CMS LOGIN</h2>
+<h2 class="brand-name">ĐĂNG NHẬP AW CMS</h2>
 <input type="text" id="userIn" placeholder="Tên đăng nhập">
 <input type="password" id="passIn" placeholder="Mật khẩu">
-<button class="btn-grad" style="width: 100%; border-radius: 15px;" onclick="handleLogin()">Vào Dashboard</button>
+<button class="btn-grad" style="width: 100%; border-radius: 15px;" onclick="handleLogin()">Vào Bảng điều khiển</button>
 <p onclick="location.reload()" style="cursor:pointer; color:#333; margin-top:25px; font-size: 0.9rem;">Quay lại Trang chủ</p>
 </div>
 </div>
@@ -153,9 +151,9 @@ footer { padding: 60px; text-align: center; color: #222; border-top: 1px solid #
 <div class="cms-side">
 <h2 class="brand-name" id="userTitle">AW CMS</h2>
 <div id="menu-admin" class="hidden">
-<div class="nav-link active" onclick="tab('a-dash')"><i class="fas fa-chart-line"></i> Dashboard</div>
-<div class="nav-item nav-link" onclick="tab('a-music')"><i class="fas fa-music"></i> Duyệt nhạc</div>
-<div class="nav-item nav-link" onclick="tab('a-users')"><i class="fas fa-users"></i> Artist</div>
+<div class="nav-link active" onclick="tab('a-dash')"><i class="fas fa-chart-line"></i> Bảng điều khiển</div>
+<div class="nav-link" onclick="tab('a-music')"><i class="fas fa-music"></i> Duyệt nhạc</div>
+<div class="nav-link" onclick="tab('a-users')"><i class="fas fa-users"></i> Nghệ sĩ</div>
 </div>
 <div id="menu-artist" class="hidden">
 <div class="nav-link active" onclick="tab('art-dash')"><i class="fas fa-rocket"></i> Tổng quan</div>
@@ -170,14 +168,14 @@ footer { padding: 60px; text-align: center; color: #222; border-top: 1px solid #
 <h2>Quản lý thành viên</h2>
 <div class="glass-card">
 <div style="display:flex; gap:10px;">
-<input type="text" id="nArt" placeholder="Tên Artist">
+<input type="text" id="nArt" placeholder="Tên Nghệ sĩ">
 <input type="text" id="nPass" placeholder="Mật khẩu">
-<button class="btn-grad" style="border-radius:12px; padding:10px 25px;" onclick="adminCreateArt()">Tạo Artist</button>
+<button class="btn-grad" style="border-radius:12px; padding:10px 25px;" onclick="adminCreateArt()">Tạo Nghệ sĩ</button>
 </div>
 </div>
 <div class="glass-card" style="padding:0;">
 <table>
-<thead><tr><th>Tên</th><th>Mật khẩu</th><th></th></tr></thead>
+<thead><tr><th>Tên</th><th>Mật khẩu</th><th>Thao tác</th></tr></thead>
 <tbody id="userTableBody"></tbody>
 </table>
 </div>
@@ -193,45 +191,42 @@ footer { padding: 60px; text-align: center; color: #222; border-top: 1px solid #
 </div>
 
 <script>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-  const firebaseConfig = {
-    apiKey: "AIzaSyApLYYcRAdsQCwUNxVVhHWFNJSJR0Y7lN0",
-    authDomain: "full-2473c.firebaseapp.com",
-    projectId: "full-2473c",
-    storageBucket: "full-2473c.firebasestorage.app",
-    messagingSenderId: "599392464096",
-    appId: "1:599392464096:web:8366299f607ea3926f3485",
-    measurementId: "G-P90ZW2QDGF"
-  };
+// Cấu hình Firebase
+const firebaseConfig = {
+apiKey: "AIzaSyApLYYcRAdsQCwUNxVVhHWFNJSJR0Y7lN0",
+authDomain: "full-2473c.firebaseapp.com",
+projectId: "full-2473c",
+storageBucket: "full-2473c.firebasestorage.app",
+messagingSenderId: "599392464096",
+appId: "1:599392464096:web:8366299f607ea3926f3485",
+databaseURL: "https://full-2473c-default-rtdb.firebaseio.com" // Đảm bảo URL này đúng
+};
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-// UI Public
+// Khởi tạo Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+let curUser = "";
+
+// Giao diện
 function toggleSidebar() {
 const s = document.getElementById('sidebarNav');
 const o = document.getElementById('overlay');
 s.classList.toggle('active');
 o.style.display = s.classList.contains('active') ? 'block' : 'none';
 }
+
 function showSection(id) {
 document.querySelectorAll('.public-container').forEach(c => c.classList.add('hidden'));
 document.getElementById(id).classList.remove('hidden');
 toggleSidebar(); window.scrollTo(0,0);
 }
+
 function openLogin() {
 document.getElementById('view-public').classList.add('hidden');
 document.getElementById('view-login').classList.remove('hidden');
 toggleSidebar();
 }
 
-// Logic 3 Chấm
 function toggleDropdown(event) {
 event.stopPropagation();
 document.querySelectorAll('.dropdown').forEach(d => {
@@ -239,20 +234,22 @@ if (d !== event.target.nextElementSibling) d.classList.remove('show');
 });
 event.target.nextElementSibling.classList.toggle('show');
 }
+
 window.onclick = () => document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
 
-// Auth
 function handleLogin() {
 const u = document.getElementById('userIn').value;
 const p = document.getElementById('passIn').value;
 if(u === "Admin" && p === "Admin2026") {
-curUser = "Admin"; enterCMS("admin");
+curUser = "Admin";
+enterCMS("admin");
 } else {
 db.ref('users/' + u).once('value', s => {
 const data = s.val();
 if(data && data.pass === p) {
-curUser = u; enterCMS("artist", data);
-} else { alert("Sai thông tin!"); }
+curUser = u;
+enterCMS("artist", data);
+} else { alert("Sai thông tin đăng nhập!"); }
 });
 }
 }
@@ -260,32 +257,33 @@ curUser = u; enterCMS("artist", data);
 function enterCMS(role, data) {
 document.getElementById('view-login').classList.add('hidden');
 document.getElementById('view-cms').classList.remove('hidden');
-if(role === "admin") {
+if (role === "admin") {
 document.getElementById('menu-admin').classList.remove('hidden');
-loadUserData(); tab('a-users');
+loadUserData();
+tab('a-users');
 } else {
 document.getElementById('menu-artist').classList.remove('hidden');
 document.getElementById('userTitle').innerText = curUser.toUpperCase();
 document.getElementById('myRevVal').innerText = "$" + (data.revenue || 0);
-tab('art-dash');
+// Artist mặc định vào tab doanh thu hoặc tổng quan
+tab('art-rev');
 }
 }
 
 function tab(id) {
 document.querySelectorAll('.tab-pane').forEach(t => t.classList.add('hidden'));
 document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-document.getElementById(id).classList.remove('hidden');
-if(event) event.currentTarget.classList.add('active');
+const activeTab = document.getElementById(id);
+if(activeTab) activeTab.classList.remove('hidden');
 }
 
-// --- HÀM TẠO ARTIST (FIXED) ---
 function adminCreateArt() {
 const u = document.getElementById('nArt').value.trim();
 const p = document.getElementById('nPass').value.trim();
-if(!u || !p) return alert("Vui lòng nhập đủ!");
+if(!u || !p) return alert("Vui lòng nhập đủ thông tin!");
 
 db.ref('users/' + u).set({ pass: p, revenue: 0 }, (err) => {
-if(err) alert("Lỗi ghi Firebase!");
+if(err) alert("Lỗi ghi dữ liệu!");
 else {
 alert("Đã tạo Artist thành công!");
 document.getElementById('nArt').value = "";
@@ -298,15 +296,30 @@ function loadUserData() {
 db.ref('users').on('value', s => {
 let html = "";
 s.forEach(c => {
-html += `<tr><td><b>${c.key}</b></td><td><code>${c.val().pass}</code></td>
-<td><div class="action-btn"><i class="fas fa-ellipsis-v dots-btn" onclick="toggleDropdown(event)"></i>
-<div class="dropdown"><div class="drop-item" onclick="deleteUser('${c.key}')">Xóa Artist</div></div></div></td></tr>`;
+html += `<tr>
+<td><b>${c.key}</b></td>
+<td><code>${c.val().pass}</code></td>
+<td>
+<div class="action-btn">
+<i class="fas fa-ellipsis-v dots-btn" onclick="toggleDropdown(event)"></i>
+<div class="dropdown">
+<div class="drop-item" onclick="deleteUser('${c.key}')"><i class="fas fa-trash"></i> Xóa Artist</div>
+</div>
+</div>
+</td>
+</tr>`;
 });
 document.getElementById('userTableBody').innerHTML = html;
 });
 }
 
-function deleteUser(key) { if(confirm("Xóa Artist này?")) db.ref('users/' + key).remove(); }
+function deleteUser(key) {
+if(confirm("Xác nhận xóa Artist này?")) {
+db.ref('users/' + key).remove();
+}
+}
 </script>
 </body>
 </html>
+
+
