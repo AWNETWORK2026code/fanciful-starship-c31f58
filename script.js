@@ -1,7 +1,8 @@
-function showTime() {
-	document.getElementById('currentTime').innerHTML = new Date().toUTCString();
+{
+  "hosting" : { 
+    "site" : "full-2473c-b355e" , 
+
+    "công cộng" : "công cộng" , 
+    ...
+  }
 }
-showTime();
-setInterval(function () {
-	showTime();
-}, 1000);
