@@ -3,391 +3,262 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AW Network LLC | Sovereign Management 2026</title>
+<title>AW Network LLC | Official Home</title>
 <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
 :root {
---primary: linear-gradient(135deg, #ff0055, #7000ff);
---bg-dark: #020202; --card-bg: #0a0a0c; --border: rgba(255, 255, 255, 0.08);
---accent: #ff0055; --text-dim: #777; --success: #00ff7f; --error: #ff4444; --info: #00bfff;
+--primary: #ff0055; --bg: #020202; --card: #0a0a0c;
+--border: rgba(255,255,255,0.06); --text: #f5f5f5; --dim: #888;
 }
-body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg-dark); color: white; overflow-x: hidden; scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
 .hidden { display: none !important; }
-.brand-name { background: var(--primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-.btn-grad { padding: 12px 25px; border: none; border-radius: 50px; background: var(--primary); color: white; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.3s; font-size: 0.7rem; }
-.btn-grad:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255, 0, 85, 0.3); }
 
-/* SIDEBAR */
-.cms-layout { display: flex; min-height: 100vh; }
-.cms-side { width: 280px; background: #000; border-right: 1px solid var(--border); padding: 40px 20px; position: fixed; height: 100%; overflow-y: auto; z-index: 1000; }
-.cms-main { margin-left: 280px; padding: 60px; width: calc(100% - 280px); background: radial-gradient(circle at top right, #0d0515, #020202); }
-.nav-link { padding: 14px 20px; cursor: pointer; color: var(--text-dim); border-radius: 12px; margin-bottom: 5px; display: flex; align-items: center; gap: 15px; transition: 0.3s; font-size: 0.9rem; }
-.nav-link.active { background: rgba(255, 0, 85, 0.1); color: #ff0055; font-weight: 700; }
-.menu-sep { font-size: 0.65rem; color: #444; text-transform: uppercase; letter-spacing: 1px; margin: 25px 0 10px 15px; font-weight: 800; }
+/* NAVIGATION */
+nav { position: fixed; top: 0; width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(2, 2, 2, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
+.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; cursor: pointer; }
+.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-links a { color: var(--dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
+.nav-links a:hover { color: var(--primary); }
 
-/* CARDS & TABLES */
-.glass-card { background: var(--card-bg); border: 1px solid var(--border); padding: 30px; border-radius: 25px; margin-bottom: 30px; backdrop-filter: blur(10px); }
-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
-th { text-align: left; font-size: 0.7rem; color: #444; padding: 0 20px; text-transform: uppercase; }
-td { padding: 18px 20px; background: #0d0d0f; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-td:first-child { border-radius: 15px 0 0 15px; }
-td:last-child { border-radius: 0 15px 15px 0; }
+/* BUTTONS */
+.btn { padding: 12px 24px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: white; cursor: pointer; transition: 0.3s; font-size: 0.85rem; font-weight: 600; }
+.btn-p { background: var(--primary); border: none; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.2); }
 
-/* STATUS TAGS */
-.stt { font-size: 0.65rem; font-weight: 800; padding: 4px 12px; border-radius: 50px; text-transform: uppercase; }
-.stt-pending { background: rgba(255, 165, 0, 0.1); color: orange; }
-.stt-approved { background: rgba(0, 255, 127, 0.1); color: var(--success); }
-.stt-info { background: rgba(0, 191, 255, 0.1); color: var(--info); }
-.stt-rejected { background: rgba(255, 0, 0, 0.1); color: var(--error); }
+/* HERO SECTION */
+.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; background: radial-gradient(circle at center, #110510 0%, #020202 100%); }
+.hero h1 { font-size: 5rem; margin: 0; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+.hero p { color: var(--dim); max-width: 600px; font-size: 1.2rem; margin: 20px 0 40px; line-height: 1.6; }
 
-input, select, textarea { width: 100%; padding: 14px; margin: 8px 0; border-radius: 12px; background: #121214; border: 1px solid var(--border); color: white; outline: none; transition: 0.3s; }
-input:focus { border-color: #ff0055; }
+/* GRID SERVICES */
+.services { padding: 100px 50px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+.s-card { background: var(--card); padding: 40px; border-radius: 20px; border: 1px solid var(--border); transition: 0.3s; }
+.s-card:hover { border-color: var(--primary); background: #0e0e11; }
+.s-card i { font-size: 2rem; color: var(--primary); margin-bottom: 20px; }
+.s-card h3 { margin: 0 0 15px 0; font-size: 1.3rem; }
+.s-card p { color: var(--dim); font-size: 0.9rem; line-height: 1.6; margin: 0; }
 
-.action-container { position: relative; text-align: right; }
-.dots-btn { cursor: pointer; padding: 10px; color: var(--text-dim); }
-.dropdown { position: absolute; right: 0; top: 100%; width: 200px; background: #16161a; border: 1px solid var(--border); border-radius: 12px; z-index: 500; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.dropdown.show { display: block; }
-.drop-item { padding: 12px 18px; font-size: 0.8rem; color: #ccc; cursor: pointer; text-align: left; border-bottom: 1px solid #222; }
-.drop-item:hover { color: #ff0055; background: rgba(255,255,255,0.02); }
+/* FOOTER */
+footer { padding: 50px; text-align: center; border-top: 1px solid var(--border); color: #444; font-size: 0.8rem; }
 
-/* STORE LIST */
-.store-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-height: 300px; overflow-y: auto; background: #000; padding: 15px; border-radius: 12px; }
-.store-item { font-size: 0.75rem; color: #888; display: flex; align-items: center; gap: 8px; }
+/* CMS LAYOUT */
+.cms-container { display: flex; min-height: 100vh; }
+.sidebar { width: 260px; border-right: 1px solid var(--border); padding: 40px 20px; position: fixed; height: 100%; background: #000; }
+.content { margin-left: 260px; padding: 60px; width: calc(100% - 260px); }
+.menu-item { padding: 14px 18px; cursor: pointer; color: var(--dim); border-radius: 10px; margin-bottom: 5px; display: flex; align-items: center; gap: 12px; transition: 0.2s; }
+.menu-item:hover, .menu-item.active { background: rgba(255,255,255,0.03); color: white; }
+.menu-item.active { border-left: 4px solid var(--primary); border-radius: 0 10px 10px 0; }
 
-footer { padding: 40px 20px; text-align: center; color: #333; font-size: 0.85rem; border-top: 1px solid #111; }
+/* FORMS & TABLES */
+.glass { background: var(--card); border: 1px solid var(--border); padding: 30px; border-radius: 16px; margin-bottom: 30px; }
+input, select, textarea { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; background: #000; border: 1px solid var(--border); color: white; outline: none; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; color: var(--dim); font-size: 0.7rem; text-transform: uppercase; padding: 15px; border-bottom: 1px solid var(--border); }
+td { padding: 15px; font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+.stt { font-size: 0.65rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+.stt-pending { color: #ffa500; background: rgba(255,165,0,0.1); }
+.stt-approved { color: #00ff7f; background: rgba(0,255,127,0.1); }
+
+/* MODAL */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; display: flex; align-items:center; justify-content:center; }
 </style>
 </head>
 <body>
 
-<div id="view-public">
-<div style="text-align:center; padding: 120px 20px;">
-<h1 style="font-size: 4rem; margin:0;"><span class="brand-name">AW NETWORK LLC</span></h1>
-<p style="color:#888; max-width:650px; margin:20px auto; line-height:1.8;">Thành lập 2025 tại TP. Hồ Chí Minh. Phân phối âm nhạc tiệm cận công chúng toàn cầu và bảo vệ tuyệt đối tác quyền số.</p>
-<div style="margin-top:40px;">
-<button class="btn-grad" onclick="openLogin()">TRUY CẬP CMS</button>
-<button class="btn-grad" style="background:#111; border: 1px solid #222; margin-left:10px" onclick="document.getElementById('regForm').classList.toggle('hidden')">ĐĂNG KÝ ARTIST</button>
+<nav id="main-nav">
+<div class="logo" onclick="goHome()">AW Music Group LLC </div>
+<div class="nav-links">
+<a onclick="goHome()">Trang chủ</a>
+<a onclick="showAuth('reg')">Gia nhập Artist</a>
+<button class="btn btn-p" onclick="showAuth('login')">Đăng nhập CMS</button>
 </div>
-<div id="regForm" class="glass-card hidden" style="max-width:450px; margin: 40px auto; text-align: left;">
-<input id="regName" placeholder="Họ và Tên nghệ sĩ *">
-<input id="regEmail" type="email" placeholder="Email liên hệ (có @) *">
-<input id="regUser" placeholder="Tên đăng nhập (Username) *">
-<input type="password" id="regPass" placeholder="Mật khẩu *">
-<button class="btn-grad" style="width:100%; margin-top:15px;" onclick="handleRegister()">Gửi Đơn Xét Duyệt</button>
+</nav>
+
+<div id="page-home">
+<section class="hero">
+<h1>UNLEASH YOUR <span style="color:var(--primary)">MUSIC.</span></h1>
+<p>AW Network LLC - Thành lập 2025 tại TP.HCM. Chúng tôi mang âm nhạc của bạn tiệm cận công chúng toàn cầu và bảo vệ tuyệt đối bản quyền hình ảnh.</p>
+<div style="display:flex; gap:15px;">
+<button class="btn btn-p" style="padding:15px 40px" onclick="showAuth('reg')">Bắt đầu ngay</button>
+<button class="btn" style="padding:15px 40px" onclick="window.scrollTo(0, 800)">Tìm hiểu thêm</button>
 </div>
+</section>
+
+<section class="services">
+<div class="s-card">
+<i class="fas fa-globe"></i>
+<h3>Phân phối toàn cầu</h3>
+<p>Đưa nhạc lên 150+ cửa hàng như Spotify, Apple Music, TikTok và Facebook.</p>
 </div>
-<footer>&copy; 2026 AW NETWORK. Hệ thống vận hành bởi <strong>AW MUSIC GROUP LLC</strong>.</footer>
+<div class="s-card">
+<i class="fas fa-shield-check"></i>
+<h3>Bảo vệ bản quyền</h3>
+<p>Hệ thống Content ID và bảo vệ video MP4 chuyên nghiệp cho nghệ sĩ.</p>
+</div>
+<div class="s-card">
+<i class="fas fa-chart-pie"></i>
+<h3>Doanh thu minh bạch</h3>
+<p>Cập nhật số dư Real-time và hỗ trợ rút tiền nhanh chóng từ 50$.</p>
+</div>
+</section>
+<footer>&copy; 2026 AW NETWORK LLC. All Rights Reserved.</footer>
 </div>
 
-<div id="view-login" class="hidden" style="height:100vh; display:flex; align-items:center; justify-content:center;">
-<div class="glass-card" style="width:340px; text-align:center;">
-<h2 class="brand-name">AW LOGIN</h2>
+<div id="page-auth" class="hidden hero">
+<div id="box-login" class="glass hidden" style="width:350px;">
+<h2 style="margin-top:0">Đăng nhập CMS</h2>
 <input id="lUser" placeholder="Username">
-<input type="password" id="lPass" placeholder="Password">
-<button class="btn-grad" style="width:100%; margin-top:15px;" onclick="handleLogin()">Vào Dashboard</button>
-<p onclick="location.reload()" style="margin-top:20px; color:#444; cursor:pointer;">Quay lại</p>
+<input type="password" id="lPass" placeholder="Mật khẩu">
+<button class="btn btn-p" style="width:100%; margin-top:10px" onclick="handleLogin()">Truy cập</button>
+<p style="font-size:0.8rem; color:var(--dim); margin-top:20px; cursor:pointer" onclick="showAuth('reg')">Chưa có tài khoản? Đăng ký</p>
+</div>
+
+<div id="box-reg" class="glass hidden" style="width:380px; text-align:left;">
+<h2 style="margin-top:0; text-align:center">Đăng ký Artist</h2>
+<input id="regName" placeholder="Tên nghệ sĩ *">
+<input id="regEmail" placeholder="Email liên hệ *">
+<input id="regUser" placeholder="Tên đăng nhập *">
+<input type="password" id="regPass" placeholder="Mật khẩu *">
+<button class="btn btn-p" style="width:100%; margin-top:10px" onclick="handleRegister()">Gửi yêu cầu gia nhập</button>
+<p style="font-size:0.8rem; color:var(--dim); margin-top:20px; cursor:pointer; text-align:center" onclick="showAuth('login')">Đã có tài khoản? Đăng nhập</p>
 </div>
 </div>
 
 <div id="view-cms" class="cms-layout hidden">
-<div class="cms-side">
-<h2 class="brand-name" id="userDisplay" style="margin-bottom:35px;">AW CMS</h2>
-
+<div class="sidebar">
+<h2 class="brand" id="userDisplay">AW CMS</h2>
 <div id="menu-admin" class="hidden">
-<div class="menu-sep">Quản lý nội dung</div>
-<div class="nav-link active" onclick="tab('a-music')"><i class="fas fa-compact-disc"></i> Duyệt Nhạc</div>
-<div class="nav-link" onclick="tab('a-oac')"><i class="fas fa-certificate"></i> Duyệt OAC</div>
-<div class="nav-link" onclick="tab('a-copy')"><i class="fas fa-shield"></i> Bản Quyền</div>
-<div class="menu-sep">Quản lý tài chính</div>
-<div class="nav-link" onclick="tab('a-pay')"><i class="fas fa-money-bill-transfer"></i> Chi Tiền (History)</div>
-<div class="nav-link" onclick="tab('a-rev')"><i class="fas fa-wallet"></i> Doanh Thu</div>
-<div class="nav-link" onclick="tab('a-users')"><i class="fas fa-users-gear"></i> Artist Manager</div>
+<p class="menu-sep">Quản lý</p>
+<div class="menu-item active" onclick="tab('a-music')"><i class="fas fa-music"></i> Duyệt Nhạc</div>
+<div class="menu-item" onclick="tab('a-video')"><i class="fas fa-video"></i> Bảo vệ Video</div>
+<div class="menu-item" onclick="tab('a-oac')"><i class="fas fa-star"></i> Duyệt OAC</div>
+<div class="menu-item" onclick="tab('a-pay')"><i class="fas fa-wallet"></i> Chi Tiền</div>
+<div class="menu-item" onclick="tab('a-users')"><i class="fas fa-users"></i> Artist Manager</div>
 </div>
-
 <div id="menu-artist" class="hidden">
-<div class="nav-link active" onclick="tab('art-dash')"><i class="fas fa-home"></i> Tổng quan</div>
-<div class="nav-link" onclick="tab('art-dist')"><i class="fas fa-upload"></i> Đăng nhạc mới</div>
-<div class="nav-link" onclick="tab('art-oac')"><i class="fas fa-play-circle"></i> Yêu cầu OAC</div>
-<div class="nav-link" onclick="tab('art-copy')"><i class="fas fa-copyright"></i> Gỡ gậy</div>
-<div class="nav-link" onclick="tab('art-withdraw')"><i class="fas fa-wallet"></i> Rút tiền ví</div>
+<div class="menu-item active" onclick="tab('art-dash')"><i class="fas fa-home"></i> Tổng quan</div>
+<div class="menu-item" onclick="tab('art-dist')"><i class="fas fa-upload"></i> Phát hành nhạc</div>
+<div class="menu-item" onclick="tab('art-prot')"><i class="fas fa-shield"></i> Bảo vệ hình ảnh</div>
+<div class="menu-item" onclick="tab('art-withdraw')"><i class="fas fa-cash-register"></i> Rút tiền</div>
+<div class="menu-item" onclick="tab('art-set')"><i class="fas fa-cog"></i> Cài đặt</div>
+</div>
+<button class="btn" style="width:100%; margin-top:50px; opacity:0.5" onclick="logout()">Đăng xuất</button>
 </div>
 
-<button class="btn-grad" style="background:#111; width:100%; margin-top:50px; border: 1px solid #222;" onclick="logout()">ĐĂNG XUẤT</button>
-</div>
-
-<div class="cms-main">
+<div class="content">
 <div id="art-dash" class="tab-pane">
-<div class="glass-card" style="display:flex; justify-content:space-between; align-items:center;">
-<div id="artProfileDisplay"></div>
-<div style="text-align:right;">
-<h4 style="color:#888; margin:0;">SỐ DƯ HIỆN TẠI</h4>
-<h1 id="revVal" style="font-size:3rem; color:#ff0055; margin:0;">$0</h1>
+<div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:40px">
+<div id="artInfo"></div>
+<div style="text-align:right"><span style="color:var(--dim); font-size:0.7rem;">BALANCE</span><h1 id="revVal" style="margin:0; font-size:3.5rem; color:var(--primary)">$0</h1></div>
 </div>
-</div>
-<h3>Tiến độ công việc & Tài chính</h3>
-<div class="glass-card"><table id="artMainTable"><thead><tr><th>Hạng mục</th><th>Thông tin</th><th>Trạng thái</th></tr></thead><tbody></tbody></table></div>
+<div class="glass" style="padding:0"><table><thead><tr><th>Hạng mục</th><th>Thông tin</th><th>Trạng thái</th></tr></thead><tbody id="artMainTable"></tbody></table></div>
 </div>
 
-<div id="art-dist" class="tab-pane hidden">
-<div class="glass-card" id="dist-container">
-<div id="step1">
-<h3 class="brand-name">Bước 1: Meta Data</h3>
-<input id="mSong" placeholder="Tên bài hát *">
-<input id="mArt" placeholder="Nghệ danh Artist chính *">
-<input id="mFeat" placeholder="Nghệ sĩ Feat (nếu có)">
-<select id="mGenre">
-<option value="RnB">RnB</option><option value="HipHop">HipHop</option><option value="Pop">Pop</option>
-<option value="Ballad">Ballad</option><option value="EDM">EDM</option><option value="Lo-fi">Lo-fi</option>
-</select>
-<input id="mDate" type="date" title="Ngày phát hành">
-<input id="mCopyright" placeholder="Dòng bản quyền (C) (vd: 2026 AW Network)">
-<p style="font-size:0.7rem; color:var(--info);">* Mã UPC sẽ do AW Network cung cấp khi bài nhạc được duyệt.</p>
-<button class="btn-grad" onclick="nextStep(2)">Tiếp tục</button>
+<div id="art-prot" class="tab-pane hidden">
+<div class="glass" style="max-width:500px">
+<h3>Bảo vệ bản quyền video</h3>
+<input id="vTitle" placeholder="Tiêu đề video/nội dung *">
+<input id="vArtist" placeholder="Nghệ danh nghệ sĩ *">
+<input id="vChannel" placeholder="Link kênh nghệ sĩ chính *">
+<input id="vLink" placeholder="Link trực tiếp file MP4 *">
+<button class="btn btn-p" style="width:100%; margin-top:10px" onclick="submitVideoProt()">Gửi bảo vệ</button>
 </div>
-<div id="step2" class="hidden">
-<h3 class="brand-name">Bước 2: Media Assets</h3>
-<input id="mBanner" placeholder="Link Drive Banner (3000x3000px, JPG/PNG) *">
-<input id="mAudio" placeholder="Link Drive File nhạc (WAV/MP3) *">
-<button class="btn-grad" onclick="nextStep(3)">Tiếp tục</button>
 </div>
-<div id="step3" class="hidden">
-<h3 class="brand-name">Bước 3: Credit Sản Phẩm</h3>
-<input id="mComposer" placeholder="Người soạn nhạc *">
-<input id="mLyricist" placeholder="Người viết lời *">
-<input id="mProducer" placeholder="Producer *">
-<input id="mMProducer" placeholder="Music Producer *">
-<button class="btn-grad" onclick="nextStep(4)">Tiếp tục</button>
-</div>
-<div id="step4" class="hidden">
-<h3 class="brand-name">Bước 4: Nền tảng phát hành</h3>
-<p style="font-size:0.8rem; color:#888;">Tích chọn cửa hàng bạn muốn phân phối (mặc định 150+ nền tảng):</p>
-<div id="storeList" class="store-grid"></div>
-<label style="display:flex; align-items:center; gap:10px; margin-top:20px; color:#444;">
-<input type="checkbox" disabled> YouTube Content ID (AW sẽ kích hoạt khi đủ điều kiện)
-</label>
-<button class="btn-grad" style="margin-top:20px" onclick="showReview()">Xem lại đơn</button>
-</div>
-<div id="step5" class="hidden">
-<h3 class="brand-name">Bước 5: Preview & Xác nhận</h3>
-<div id="reviewBox" style="background:#000; padding:20px; border-radius:15px; margin-bottom:20px; line-height:1.8;"></div>
-<button class="btn-grad" onclick="submitMusic()">XÁC NHẬN GỬI</button>
-<button class="btn-grad" style="background:#222" onclick="tab('art-dash')">HỦY BỎ</button>
+
+<div id="a-music" class="tab-pane hidden"><h2>Duyệt nhạc phát hành</h2><table><tbody id="tbody-admin-music"></tbody></table></div>
+<div id="a-video" class="tab-pane hidden"><h2>Yêu cầu bảo vệ Video</h2><table><tbody id="tbody-admin-video"></tbody></table></div>
+<div id="a-pay" class="tab-pane hidden"><h2>Chi tiền rút</h2><table><tbody id="tbody-admin-pay"></tbody></table></div>
+<div id="a-users" class="tab-pane hidden">
+<div class="glass" style="max-width:500px"><h3>Nhập doanh thu</h3><select id="revUserSel"></select><input id="revValInp" type="number" placeholder="Số tiền ($)"><button class="btn btn-p" onclick="updateRevAdmin()">Cập nhật ví</button></div>
+<div class="glass" style="padding:0; margin-top:20px"><table><tbody id="tbody-admin-users"></tbody></table></div>
 </div>
 </div>
 </div>
 
-<div id="art-oac" class="tab-pane hidden">
-<div class="glass-card">
-<h3>Yêu cầu Kênh nghệ sĩ (OAC)</h3>
-<input id="oacOff" placeholder="Link kênh Official của bạn *">
-<input id="oacTopic" placeholder="Link kênh Topic nghệ sĩ *">
-<textarea id="oacSongs" placeholder="Link 3 bài hát xác thực đã phân phối qua AW *"></textarea>
-<button class="btn-grad" onclick="submitOAC()">Gửi yêu cầu OAC</button>
+<div id="modalDetail" class="modal hidden">
+<div class="glass" style="width: 500px; max-height:85vh; overflow-y:auto;">
+<div id="modalContent"></div>
+<button class="btn" style="margin-top:20px; width:100%" onclick="closeModal()">Đóng</button>
 </div>
-</div>
-<div id="art-copy" class="tab-pane hidden">
-<div class="glass-card"><h3>Gỡ gậy bản quyền</h3><input id="cpTarget" placeholder="Link video bị đánh gậy cần gỡ *"><button class="btn-grad" onclick="submitCopy()">Báo cáo cho Admin</button></div>
-</div>
-<div id="art-withdraw" class="tab-pane hidden">
-<div class="glass-card" style="max-width:600px;">
-<h3>Rút tiền doanh thu</h3>
-<input id="wdBank" placeholder="Tên ngân hàng"><input id="wdAccName" placeholder="Tên chủ tài khoản"><input id="wdAccNum" placeholder="Số tài khoản">
-<input id="wdAmount" type="number" placeholder="Số tiền rút ($)">
-<button class="btn-grad" style="width:100%; margin-top:10px" onclick="submitWithdraw()">Xác nhận rút</button>
-</div>
-</div>
-
-<div id="a-music" class="tab-pane hidden"><h2>Duyệt bài hát mới</h2><table><thead><tr><th>Artist</th><th>Tên bài</th><th>Thao tác</th></tr></thead><tbody id="tbody-admin-music"></tbody></table></div>
-
-<div id="a-oac" class="tab-pane hidden">
-<h2>Yêu cầu OAC</h2>
-<div style="margin-bottom:15px; display:flex; gap:10px;">
-<input type="checkbox" id="oacAll" onclick="checkAll('oac')"> <label>Chọn tất cả</label>
-<button onclick="deleteBulk('oac_requests', 'oac')" style="background:red; color:white; border:none; padding:5px 15px; border-radius:8px; cursor:pointer;">Xóa mục đã xong</button>
-</div>
-<table><thead><tr><th>X</th><th>Artist</th><th>Kênh</th><th>Thao tác</th></tr></thead><tbody id="tbody-admin-oac"></tbody></table>
-</div>
-
-<div id="a-copy" class="tab-pane hidden">
-<h2>Bản quyền (Gậy)</h2>
-<div style="margin-bottom:15px; display:flex; gap:10px;">
-<input type="checkbox" id="copyAll" onclick="checkAll('copy')"> <label>Chọn tất cả</label>
-<button onclick="deleteBulk('copy_reports', 'copy')" style="background:red; color:white; border:none; padding:5px 15px; border-radius:8px; cursor:pointer;">Xóa mục đã xong</button>
-</div>
-<table><thead><tr><th>X</th><th>Artist</th><th>Link gậy</th><th>Thao tác</th></tr></thead><tbody id="tbody-admin-copy"></tbody></table>
-</div>
-
-<div id="a-pay" class="tab-pane hidden"><h2>Lịch sử thanh toán</h2><table><thead><tr><th>Artist</th><th>Số tiền</th><th>Ngân hàng</th><th>Trạng thái</th></tr></thead><tbody id="tbody-admin-pay"></tbody></table></div>
-<div id="a-users" class="tab-pane hidden"><h2>Quản lý Artist</h2><table><thead><tr><th>Họ Tên</th><th>Username</th><th>Thao tác</th></tr></thead><tbody id="tbody-admin-users"></tbody></table></div>
-<div id="a-rev" class="tab-pane hidden">
-<div class="glass-card" style="max-width:500px;"><h2>Nhập doanh thu</h2><select id="revUserSelect"></select><input id="revValInp" type="number" placeholder="Số dư mới ($)"><button class="btn-grad" style="width:100%" onclick="updateRevAdmin()">Cập nhật ví</button></div>
-</div>
-</div>
-</div>
-
-<div id="modalDetail" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); z-index:9999; display:flex; align-items:center; justify-content:center;">
-<div class="glass-card" style="width: 500px; max-height:85vh; overflow-y:auto; border:1px solid #333;"><h2 class="brand-name">Chi tiết hồ sơ</h2><div id="modalContent" style="text-align:left; line-height:1.8;"></div><button class="btn-grad" style="margin-top:25px; width:100%; background:#222;" onclick="closeModal()">Đóng</button></div>
 </div>
 
 <script>
-// --- CONFIG FIREBASE (RISBI) ---
-const firebaseConfig = {
-apiKey: "AIzaSyApLYYcRAdsQCwUNxVVhHWFNJSJR0Y7lN0",
-authDomain: "full-2473c.firebaseapp.com",
-projectId: "full-2473c",
-storageBucket: "full-2473c.firebasestorage.app",
-messagingSenderId: "599392464096",
-appId: "1:599392464096:web:8366299f607ea3926f3485",
-databaseURL: "https://full-2473c-default-rtdb.firebaseio.com"
-};
+// --- CONFIG FIREBASE ---
+const firebaseConfig = { apiKey: "AIzaSyApLYYcRAdsQCwUNxVVhHWFNJSJR0Y7lN0", authDomain: "full-2473c.firebaseapp.com", projectId: "full-2473c", storageBucket: "full-2473c.firebasestorage.app", messagingSenderId: "599392464096", appId: "1:599392464096:web:8366299f607ea3926f3485", databaseURL: "https://full-2473c-default-rtdb.firebaseio.com" };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 let curUser = ""; let curBalance = 0;
 
-// [SESSION GUARD]
-window.onload = function() {
-const savedUser = localStorage.getItem('awUser');
-const savedRole = localStorage.getItem('awRole');
-const savedTab = localStorage.getItem('awTab');
-if(savedUser && savedRole) {
-curUser = savedUser; enterCMS(savedRole);
-if(savedTab) tab(savedTab);
-}
-renderStoreList();
+// --- SESSION GUARD & NAVIGATION ---
+window.onload = () => {
+const u = localStorage.getItem('awU'), r = localStorage.getItem('awR'), t = localStorage.getItem('awT');
+if(u && r) { curUser = u; enterCMS(r); if(t) tab(t); }
 };
 
-// UI UTILS
-function toggleDots(e) { e.stopPropagation(); document.querySelectorAll('.dropdown').forEach(d => { if(d !== e.target.nextElementSibling) d.classList.remove('show'); }); e.target.nextElementSibling.classList.toggle('show'); }
-window.onclick = () => document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
-function tab(id) {
-document.querySelectorAll('.tab-pane').forEach(t => t.classList.add('hidden'));
-document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-if(document.getElementById(id)) { document.getElementById(id).classList.remove('hidden'); localStorage.setItem('awTab', id); }
-}
-function openLogin() { document.getElementById('view-public').classList.add('hidden'); document.getElementById('view-login').classList.remove('hidden'); }
+function goHome() { document.getElementById('view-cms').classList.add('hidden'); document.getElementById('page-auth').classList.add('hidden'); document.getElementById('page-home').classList.remove('hidden'); document.getElementById('main-nav').classList.remove('hidden'); }
+function showAuth(type) { document.getElementById('page-home').classList.add('hidden'); document.getElementById('page-auth').classList.remove('hidden'); document.getElementById('box-login').classList.toggle('hidden', type!=='login'); document.getElementById('box-reg').classList.toggle('hidden', type!=='reg'); }
 function logout() { localStorage.clear(); location.reload(); }
+function tab(id) { document.querySelectorAll('.tab-pane').forEach(p => p.classList.add('hidden')); document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active')); document.getElementById(id).classList.remove('hidden'); localStorage.setItem('awT', id); }
+function closeModal() { document.getElementById('modalDetail').classList.add('hidden'); }
 
-// RENDER STORES
-const stores = ["Spotify", "Apple Music", "TikTok", "Facebook", "Instagram", "Amazon", "YouTube Music", "Deezer", "Tidal", "Pandora", "SoundCloud", "Joox", "VIBE", "KKBOX", "NetEase Music", "Tencent Music", "Shazam", "Beatport", "Napster", "Boomplay"];
-function renderStoreList() {
-let h = ""; stores.forEach(s => h += `<div class="store-item"><input type="checkbox" checked> ${s}</div>`);
-document.getElementById('storeList').innerHTML = h;
-}
-
-// AUTH
-function handleRegister() {
-const email = document.getElementById('regEmail').value.trim();
-if(!email.includes('@')) return alert("Vui lòng nhập Email chính xác!");
-db.ref('users/'+document.getElementById('regUser').value.trim()).set({ name: document.getElementById('regName').value, email: email, pass: document.getElementById('regPass').value, revenue: 0 }).then(() => { alert("Đăng ký thành công!"); location.reload(); });
-}
+// --- AUTH LOGIC ---
 function handleLogin() {
-const u = document.getElementById('lUser').value; const p = document.getElementById('lPass').value;
-if(u === "Admin" && p === "Admin2026") { curUser="Admin"; localStorage.setItem('awUser','Admin'); localStorage.setItem('awRole','admin'); enterCMS("admin"); }
-else { db.ref('users/'+u).once('value', s => { if(s.val() && s.val().pass === p) { curUser=u; localStorage.setItem('awUser',u); localStorage.setItem('awRole','artist'); enterCMS("artist"); } else alert("Lỗi!"); }); }
+const u = document.getElementById('lUser').value, p = document.getElementById('lPass').value;
+if(u === "Admin" && p === "Admin2026") { saveSession("Admin", "admin"); }
+else { db.ref('users/'+u).once('value', s => { if(s.val() && s.val().pass === p) saveSession(u, "artist"); else alert("Lỗi!"); }); }
 }
-function enterCMS(role) {
-document.getElementById('view-login').classList.add('hidden'); document.getElementById('view-cms').classList.remove('hidden'); document.getElementById('view-public').classList.add('hidden');
-if(role === "admin") { document.getElementById('menu-admin').classList.remove('hidden'); loadAdmin(); tab('a-music'); }
-else { document.getElementById('menu-artist').classList.remove('hidden'); document.getElementById('userDisplay').innerText = curUser.toUpperCase(); loadArtistData(); tab('art-dash'); }
-}
-
-// ARTIST LOGIC
-function nextStep(s) { document.querySelectorAll('#dist-steps > div').forEach(d => d.classList.add('hidden')); document.getElementById('step' + s).classList.remove('hidden'); }
-function showReview() {
-const r = `<b>Artist:</b> ${document.getElementById('mArt').value}<br><b>Bài hát:</b> ${document.getElementById('mSong').value}<br><b>Composer:</b> ${document.getElementById('mComposer').value}`;
-document.getElementById('reviewBox').innerHTML = r; nextStep(5);
-}
-function submitMusic() {
-db.ref('music_submissions').push({
-artist: curUser, song: document.getElementById('mSong').value, art: document.getElementById('mArt').value,
-audio: document.getElementById('mAudio').value, composer: document.getElementById('mComposer').value, status: 'pending'
-}).then(() => { alert("Đã gửi bài hát thành công!"); tab('art-dash'); });
-}
-function submitOAC() { db.ref('oac_requests').push({ artist: curUser, main: document.getElementById('oacOff').value, status: 'pending' }).then(() => alert("Đã gửi đơn OAC thành công!")); }
-function submitCopy() { db.ref('copy_reports').push({ artist: curUser, link: document.getElementById('cpTarget').value, status: 'pending' }).then(() => alert("Đã báo cáo gậy thành công!")); }
-
-function submitWithdraw() {
-const amt = parseFloat(document.getElementById('wdAmount').value);
-if(curBalance < 50 || amt < 50) return alert("Rút tối thiểu 50$!");
-const bank = { bank: document.getElementById('wdBank').value, accName: document.getElementById('wdAccName').value, accNum: document.getElementById('wdAccNum').value };
-db.ref('users/'+curUser+'/bank').set(bank);
-db.ref('withdraw_req').push({ artist: curUser, ...bank, amount: amt, status: 'pending' }).then(() => alert("Đã gửi đơn rút tiền thành công!"));
+function saveSession(u, r) { localStorage.setItem('awU',u); localStorage.setItem('awR',r); curUser = u; enterCMS(r); }
+function enterCMS(r) {
+document.getElementById('main-nav').classList.add('hidden'); document.getElementById('page-home').classList.add('hidden'); document.getElementById('page-auth').classList.add('hidden');
+document.getElementById('view-cms').classList.remove('hidden');
+if(r==='admin') { document.getElementById('menu-admin').classList.remove('hidden'); loadAdmin(); }
+else { document.getElementById('menu-artist').classList.remove('hidden'); document.getElementById('userDisplay').innerText = curUser.toUpperCase(); loadArtistData(); }
 }
 
+// --- ARTIST LOGIC ---
+function submitVideoProt() {
+const data = { artist: curUser, title: document.getElementById('vTitle').value, owner: document.getElementById('vArtist').value, channel: document.getElementById('vChannel').value, link: document.getElementById('vLink').value, status: 'pending' };
+db.ref('video_protect').push(data).then(() => { alert("Đã gửi đơn bảo vệ!"); tab('art-dash'); });
+}
 function loadArtistData() {
 db.ref('users/'+curUser).on('value', s => {
-const d = s.val(); if(!d) return;
-curBalance = parseFloat(d.revenue || 0); document.getElementById('revVal').innerText = "$" + curBalance;
-document.getElementById('artProfileDisplay').innerHTML = `<b>${d.name}</b><br><span>${d.email}</span>`;
-if(d.bank) { document.getElementById('wdBank').value = d.bank.bank; document.getElementById('wdAccName').value = d.bank.accName; document.getElementById('wdAccNum').value = d.bank.accNum; }
+const d = s.val(); curBalance = d.revenue || 0;
+document.getElementById('revVal').innerText = "$" + curBalance;
+document.getElementById('artInfo').innerHTML = `<b>Welcome, ${d.name}</b><br><span style="color:var(--dim);font-size:0.8rem">${d.email}</span>`;
 });
 db.ref('music_submissions').on('value', sm => {
-db.ref('withdraw_req').on('value', sw => {
-db.ref('oac_requests').on('value', so => {
-db.ref('copy_reports').on('value', sc => {
+db.ref('video_protect').on('value', sv => {
 let h = "";
-sm.forEach(c => { if(c.val().artist === curUser) h += `<tr><td>Nhạc</td><td>${c.val().song}</td><td><span class="stt stt-${c.val().status}">${c.val().status}</span></td></tr>`; });
-so.forEach(c => { if(c.val().artist === curUser) h += `<tr><td>OAC</td><td>Yêu cầu Kênh</td><td><span class="stt stt-${c.val().status}">${c.val().status}</span></td></tr>`; });
-sc.forEach(c => { if(c.val().artist === curUser) h += `<tr><td>Gỡ gậy</td><td>Bản quyền</td><td><span class="stt stt-${c.val().status}">${c.val().status}</span></td></tr>`; });
-sw.forEach(c => { if(c.val().artist === curUser) {
-let txt = c.val().status === 'pending' ? 'Chưa rút' : 'Đã chuyển';
-h += `<tr><td>Rút tiền</td><td>$${c.val().amount}</td><td><span class="stt stt-${c.val().status === 'pending' ? 'pending' : 'approved'}">${txt}</span></td></tr>`;
-}});
-document.getElementById('artMainTable').querySelector('tbody').innerHTML = h;
-});
-});
+sm.forEach(c => { if(c.val().artist === curUser) h += `<tr><td>Phát hành</td><td>${c.val().song}</td><td><span class="stt stt-${c.val().status}">${c.val().status}</span></td></tr>`; });
+sv.forEach(c => { if(c.val().artist === curUser) h += `<tr><td>Video</td><td>${c.val().title}</td><td><span class="stt stt-${c.val().status}">${c.val().status}</span></td></tr>`; });
+document.getElementById('artMainTable').innerHTML = h;
 });
 });
 }
 
-// ADMIN ACTIONS
+// --- ADMIN LOGIC ---
 function loadAdmin() {
+db.ref('video_protect').on('value', s => {
+let h = ""; s.forEach(c => { h += `<tr><td>${c.val().artist}</td><td>${c.val().title}</td><td><button onclick="viewDetail('video_protect/${c.key}')" class="btn">Xem</button> <button onclick="db.ref('video_protect/${c.key}').update({status:'approved'})" class="btn btn-p">Bảo vệ</button></td></tr>`; });
+document.getElementById('tbody-admin-video').innerHTML = h;
+});
 db.ref('users').on('value', s => {
-let h = ""; let opt = ""; s.forEach(c => {
-opt += `<option value="${c.key}">${c.key}</option>`;
-h += `<tr><td>${c.val().name}</td><td>${c.key}</td><td><button onclick="viewDetail('users/${c.key}')" class="btn-grad">Xem Profile</button> <button onclick="deleteArt('${c.key}')" style="color:red; background:none; cursor:pointer; margin-left:10px">Xóa TK</button></td></tr>`;
-});
-document.getElementById('tbody-admin-users').innerHTML = h; document.getElementById('revUserSelect').innerHTML = opt;
-});
-db.ref('music_submissions').on('value', s => {
-let h = ""; s.forEach(c => { h += `<tr><td>${c.val().artist}</td><td>${c.val().song}</td><td><div class="action-container"><i class="fas fa-ellipsis-v dots-btn" onclick="toggleDots(event)"></i><div class="dropdown"><div class="drop-item" onclick="viewDetail('music_submissions/${c.key}')">Chi tiết đơn</div><div class="drop-item" onclick="adminSt('music_submissions/${c.key}','approved')">Duyệt bài</div><div class="drop-item" onclick="adminSt('music_submissions/${c.key}','rejected')">Từ chối</div><div class="drop-item" style="color:red" onclick="db.ref('music_submissions/${c.key}').remove()">Xóa nhạc</div></div></div></td></tr>`; });
-document.getElementById('tbody-admin-music').innerHTML = h;
-});
-db.ref('oac_requests').on('value', s => {
-let h = ""; s.forEach(c => { h += `<tr><td><input type="checkbox" class="chk-oac" data-key="${c.key}" data-st="${c.val().status}"></td><td>${c.val().artist}</td><td>OAC</td><td><button onclick="adminSt('oac_requests/${c.key}','approved')">Duyệt</button> <button onclick="adminSt('oac_requests/${c.key}','info')">Cần info</button></td></tr>`; });
-document.getElementById('tbody-admin-oac').innerHTML = h;
-});
-db.ref('copy_reports').on('value', s => {
-let h = ""; s.forEach(c => { h += `<tr><td><input type="checkbox" class="chk-copy" data-key="${c.key}" data-st="${c.val().status}"></td><td>${c.val().artist}</td><td>Gậy</td><td><button onclick="adminSt('copy_reports/${c.key}','approved')">Xong</button> <button onclick="adminSt('copy_reports/${c.key}','info')">Cần info</button></td></tr>`; });
-document.getElementById('tbody-admin-copy').innerHTML = h;
-});
-db.ref('withdraw_req').on('value', s => {
-let h = ""; s.forEach(c => { const v = c.val();
-let btn = v.status === 'pending' ? `<button onclick="processPay('${c.key}','${v.artist}',${v.amount})">Đã chi</button>` : `<span style="color:var(--success); font-weight:800">HOÀN TẤT</span>`;
-h += `<tr><td>${v.artist}</td><td>$${v.amount}</td><td>${v.bank}</td><td>${btn}</td></tr>`;
-});
-document.getElementById('tbody-admin-pay').innerHTML = h;
+let h = ""; let opt = ""; s.forEach(c => { opt += `<option value="${c.key}">${c.key}</option>`; h += `<tr><td>${c.val().name}</td><td>${c.key}</td><td><button onclick="viewDetail('users/${c.key}')" class="btn">Hồ sơ</button></td></tr>`; });
+document.getElementById('revUserSel').innerHTML = opt; document.getElementById('tbody-admin-users').innerHTML = h;
 });
 }
-
-function processPay(key, artist, amount) {
-db.ref('users/'+artist).once('value', s => {
-db.ref('users/'+artist).update({ revenue: (parseFloat(s.val().revenue)||0) - amount });
-db.ref('withdraw_req/'+key).update({ status: 'approved' }).then(() => alert("Đã trừ tiền và hoàn tất!"));
+function viewDetail(p) {
+db.ref(p).once('value', s => {
+let h = ""; const d = s.val();
+if(d.link && d.link.includes('mp4')) h += `<video controls src="${d.link}" style="width:100%; border-radius:12px; margin-bottom:15px;"></video>`;
+for(let k in d) { if(k!=='pass') h += `<p style="border-bottom:1px solid var(--border); padding:8px 0; font-size:0.8rem"><b>${k.toUpperCase()}:</b> ${d[k]}</p>`; }
+document.getElementById('modalContent').innerHTML = h; document.getElementById('modalDetail').classList.remove('hidden');
 });
 }
-function adminSt(path, st) { db.ref(path).update({status: st}).then(() => alert("Đã cập nhật!")); }
-function updateRevAdmin() { db.ref('users/'+document.getElementById('revUserSelect').value).update({ revenue: document.getElementById('revValInp').value }); }
-function deleteArt(u) { if(confirm("Xóa sạch vĩnh viễn Artist và dữ liệu?")) { db.ref('users/'+u).remove(); } }
-function deleteBulk(node, cls) {
-if(!confirm("Xóa các đơn đã xử lý?")) return;
-document.querySelectorAll('.chk-'+cls).forEach(i => { if(i.checked && (i.dataset.st==='approved' || i.dataset.st==='rejected' || i.dataset.st==='info')) db.ref(node+'/'+i.dataset.key).remove(); });
-}
-function checkAll(cls) { document.querySelectorAll('.chk-'+cls).forEach(i => i.checked = document.getElementById(cls+'All').checked); }
-function viewDetail(p) { db.ref(p).once('value', s => { let h = ""; for(let k in s.val()) { if(k!=='pass') h += `<p style="border-bottom:1px solid #222; padding:10px 0;"><b>${k.toUpperCase()}:</b> <span style="color:#ff0055; word-break:break-all">${typeof s.val()[k] === 'object' ? JSON.stringify(s.val()[k]) : s.val()[k]}</span></p>`; } document.getElementById('modalContent').innerHTML = h; document.getElementById('modalDetail').classList.remove('hidden'); }); }
-function closeModal() { document.getElementById('modalDetail').classList.add('hidden'); }
 </script>
 </body>
 </html>
